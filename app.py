@@ -66,10 +66,8 @@ dist_dic=states_dic()
 def input_val(district,date):
     district=district
     try:
-        districtval=str(dist_dic[district])
-        date = date
         # return districtval ,date
-        URL = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id=" + districtval + "&date=" + date
+        URL = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id=" + str(dist_dic[district]) + "&date=" + date
         HEADERS = ({'User-Agent':
                         'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36',
                     'Accept-Language': 'en-US'})
