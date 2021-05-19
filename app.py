@@ -77,7 +77,7 @@ def input_val(district,date):
         val = district_value.split("{")
         return val
     except Exception:
-        val= 1
+        val= str(len(district))+str(dist_dic)
         return val
 
 
