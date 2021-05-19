@@ -1,0 +1,33 @@
+<html>
+<head>
+     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+<title>
+    Vaccine avalable locations
+</title>
+<body>
+{% for post in posts%}
+
+<h4>{{ post.name }}</h4>
+
+<pre>Address                    : {{ post.address }}</pre>
+<pre>PINCODE                    : {{ post.pincode }}</pre>
+<pre>BLOCK NAME                 : {{ post.block_name}}</pre>
+<pre>Available Capacity Dose1   : {{ post.available_capacity_dose1 }}</pre>
+<pre>Available Capacity Dose2   : {{ post.available_capacity_dose2}}</pre>
+<pre>Available Capacity         : {{ post.available_capacity}}</pre>
+<pre>Vaccine                    : {{ post.vaccine}}</pre>
+<pre>FEE TYPE                   : {{ post.fee_type}}</pre>
+<pre>Slots                      : {{ post.slots}}</pre>
+<p>----------------------------------------------------------------------</p>
+{% endfor %}
+
+
+
+</body>
+
+
+</html>
