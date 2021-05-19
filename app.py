@@ -51,7 +51,7 @@ def split_district(states):
             dist_dist[k['district_name']] = k['district_id']
             new_lst.append(k["district_name"])
         state_dist[i] = new_lst
-    return dist_dist dist_val1
+    return dist_dist,dist_val1
 
 def states_dic():
     states = {}
