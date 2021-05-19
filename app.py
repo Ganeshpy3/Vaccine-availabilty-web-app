@@ -111,7 +111,7 @@ def form():
        val=input_val(district,date)
        if val ==1:
            a=str(b)
-           return "Please Enter corect value "+b
+           return "Please Enter corect value "+a
 
        else:
            op=availability(val)
