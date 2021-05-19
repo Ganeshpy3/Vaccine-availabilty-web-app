@@ -4,5 +4,7 @@ itsdangerous==1.1.0
 Jinja2==2.10.1
 MarkupSafe==1.1.1
 Werkzeug==0.15.5
-BeautifulSoup==3.2
-requests
+beautifulsoup4==4.8.2
+bs4==0.0.1
+requests==2.22.0
+requests-file==1.4.3
