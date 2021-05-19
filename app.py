@@ -6,12 +6,12 @@ app=Flask(__name__)
 
 # app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
 
-
-HEADERS = ({'User-Agent':
-                'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36',
-                'Accept-Language': 'en-US'})
+#
+# HEADERS = ({'User-Agent':
+#                 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36',
+#                 'Accept-Language': 'en-US'}) ,headers=HEADERS
 URL="https://cdn-api.co-vin.in/api/v2/admin/location/states"
-webpage = requests.get(URL,headers=HEADERS)
+webpage = requests.get(URL)
 state_soup = BeautifulSoup(webpage.content, "lxml")
 state_values=state_soup.text
 state_val=state_values.split("{")
@@ -51,7 +51,7 @@ def split_district(states):
             dist_dist[k['district_name']] = k['district_id']
             new_lst.append(k["district_name"])
         state_dist[i] = new_lst
-    return dist_dist,dist_val1
+    return dist_dist
 
 def states_dic():
     states = {}
@@ -60,7 +60,7 @@ def states_dic():
     for i in lst:
         states[i["state_name"]] = i["state_id"]
     return split_district(states)
-dist_dic,b=states_dic()
+dist_dic=states_dic()
 
 # districtval ,date=input_val("Kanyakumari","19-05-2021")
 def input_val(district,date):
@@ -110,7 +110,7 @@ def form():
        date=request.form["d"]
        val=input_val(district,date)
        if val ==1:
-           a=str(b)
+           a="hi"
            return "Please Enter corect value "+a
 
        else:
