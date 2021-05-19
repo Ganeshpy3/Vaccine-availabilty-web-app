@@ -21,9 +21,9 @@ def split_state(val):
     for i in val[2:]:
         if j < len(val[2:]) - 1:
             j = j + 1
-            lst.append(eval("{" + i[:-1]))
+            lst.append(json.loads("{" + i[:-1]))
         else:
-            lst.append(eval("{" + i[:-11]))
+            lst.append(json.loads("{" + i[:-11]))
     return lst
 
 def split_district(states):
@@ -42,10 +42,10 @@ def split_district(states):
             if y < len(dist_val1[2:]) - 1:
                 y = y + 1
                 val0 = "{" + j
-                dist_lst.append(eval(val0[:-1]))
+                dist_lst.append(json.loads(val0[:-1]))
             else:
                 val0 = "{" + j
-                dist_lst.append(eval(val0[:-11]))
+                dist_lst.append(json.loads(val0[:-11]))
         new_lst = []
         for k in dist_lst:
             dist_dist[k["district_name"]] = k["district_id"]
@@ -77,7 +77,7 @@ def input_val(district,date):
         val = district_value.split("{")
         return val
     except Exception:
-        val= str(len(district))+str(len(dist_dic))
+        val= 1
         return val
 
 
@@ -88,11 +88,11 @@ def append_list(dic_val):
         if j < len(dic_val[2:])-1:
             j = j + 1
             val = "{" + i
-            lst.append(eval(val[:-1]))
+            lst.append(json.loads(val[:-1]))
 
         else:
             val = "{" + i
-            lst.append(eval(val[:-2]))
+            # lst.append(json.loads(val[:-2]))
 
     return lst
 
