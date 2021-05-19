@@ -64,7 +64,7 @@ dist_dic=states_dic()
 # districtval ,date=input_val("Kanyakumari","19-05-2021")
 def input_val(district,date):
     district=district
-    districtval=str(dist_dic[district])
+    districtval=dist_dic[district]
     date=date
     # return districtval ,date
     URL="https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id="+districtval+"&date="+date
@@ -112,6 +112,6 @@ def form():
 
 
 
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
+
+if __name__=='__main__':
+    app.run(debug=True)
