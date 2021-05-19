@@ -1,7 +1,6 @@
 from bs4 import BeautifulSoup
 import  json
-import urllib3
-urllib3.disable_warnings()
+import requests
 from flask import Flask,render_template,request,redirect,url_for
 app=Flask(__name__)
 
@@ -13,10 +12,10 @@ URL="https://cdn-api.co-vin.in/api/v2/admin/location/states"
 #                 'Accept-Language': 'en-US'})
 # # HEADERS= headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36'}
 #
-# webpage = requests.get(URL,headers=HEADERS)
-http = urllib3.PoolManager()
-webpage = http.request('GET', URL)
-state_soup = BeautifulSoup(webpage.data, "lxml")
+
+HEADERS={'user-agent': 'your-own-user-agent/0.0.1'}
+webpage = requests.get(URL,headers=HEADERS)
+state_soup = BeautifulSoup(webpage.content, "lxml")
 state_values=state_soup.text
 state_val=state_values.split("{")
 def split_state(val):
@@ -36,8 +35,8 @@ def split_district(states):
     for i in states:
         inp = states[i]
         URL1 = 'https://cdn-api.co-vin.in/api/v2/admin/location/districts/' + str(inp)
-        webpage1 = http.request('GET', URL1)
-        soup1 = BeautifulSoup(webpage1.data, "lxml")
+        webpage1 = requests.get(URL1,headers=HEADERS)
+        soup1 = BeautifulSoup(webpage1.content, "lxml")
         dist_value = soup1.text
         dist_val1 = dist_value.split("{")
         dist_lst = []
@@ -75,8 +74,8 @@ def input_val(district,date):
         # HEADERS = ({'User-Agent':
         #                 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36',
         #             'Accept-Language': 'en-US'})
-        webpage2 = http.request('GET', URL2)
-        district_soup = BeautifulSoup(webpage2.data, "lxml")
+        webpage2 = requests.get(URL2,headers=HEADERS)
+        district_soup = BeautifulSoup(webpage2.content, "lxml")
         district_value = district_soup.text
         val = district_value.split("{")
         return val
