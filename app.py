@@ -31,7 +31,7 @@ def split_district(states):
     dist_dist = {}
     for i in states:
         inp = states[i]
-        url = "https://cdn-api.co-vin.in/api/v2/admin/location/districts/" + str(inp)
+        url = 'https://cdn-api.co-vin.in/api/v2/admin/location/districts/' + str(inp)
         webpage1 = requests.get(url, headers=HEADERS)
         soup1 = BeautifulSoup(webpage1.content, "lxml")
         dist_value = soup1.text
@@ -48,10 +48,10 @@ def split_district(states):
                 dist_lst.append(json.loads(val0[:-11]))
         new_lst = []
         for k in dist_lst:
-            dist_dist[k["district_name"]] = k["district_id"]
+            dist_dist[k['district_name']] = k['district_id']
             new_lst.append(k["district_name"])
         state_dist[i] = new_lst
-    return dist_dist
+    return dist_dist dist_val1
 
 def states_dic():
     states = {}
@@ -60,7 +60,7 @@ def states_dic():
     for i in lst:
         states[i["state_name"]] = i["state_id"]
     return split_district(states)
-dist_dic=states_dic()
+dist_dic,b=states_dic()
 
 # districtval ,date=input_val("Kanyakumari","19-05-2021")
 def input_val(district,date):
@@ -92,7 +92,7 @@ def append_list(dic_val):
 
         else:
             val = "{" + i
-            # lst.append(json.loads(val[:-2]))
+            lst.append(json.loads(val[:-2]))
 
     return lst
 
@@ -110,8 +110,8 @@ def form():
        date=request.form["d"]
        val=input_val(district,date)
        if val ==1:
-           a=str(len(dist_dic)+1)
-           return "Please Enter corect value "+a
+           a=str(b)
+           return "Please Enter corect value "+b
 
        else:
            op=availability(val)
