@@ -65,18 +65,24 @@ dist_dic=states_dic()
 # districtval ,date=input_val("Kanyakumari","19-05-2021")
 def input_val(district,date):
     district=district
-    districtval=str(dist_dic[district])
-    date=date
-    # return districtval ,date
-    URL="https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id="+districtval+"&date="+date
-    HEADERS = ({'User-Agent':
-                'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36',
-                'Accept-Language': 'en-US'})
-    webpage = requests.get(URL,headers=HEADERS)
-    district_soup = BeautifulSoup(webpage.content, "lxml")
-    district_value=district_soup.text
-    val=district_value.split("{")
-    return val
+    try:
+        districtval=str(dist_dic[district])
+        date = date
+        # return districtval ,date
+        URL = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id=" + districtval + "&date=" + date
+        HEADERS = ({'User-Agent':
+                        'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36',
+                    'Accept-Language': 'en-US'})
+        webpage = requests.get(URL, headers=HEADERS)
+        district_soup = BeautifulSoup(webpage.content, "lxml")
+        district_value = district_soup.text
+        val = district_value.split("{")
+        return val
+    except Exception:
+        val= 1
+        return val
+
+
 def append_list(dic_val):
     j = 0
     lst=[]
@@ -105,11 +111,15 @@ def form():
        district=request.form["u"]
        date=request.form["d"]
        val=input_val(district,date)
-       op=availability(val)
-       if len(op)<=0:
-           return "Sorry NO data avalibale,Please check later"
+       if val ==1:
+           return "Please Enter corect value"
+
        else:
-           return  render_template("index.html",posts=op)
+           op=availability(val)
+           if len(op)<=0:
+               return "Sorry NO data avalibale,Please check later"
+           else:
+               return  render_template("index.html",posts=op)
 
 
 
