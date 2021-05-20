@@ -8,7 +8,7 @@ app=Flask(__name__)
 URL="https://cdn-api.co-vin.in/api/v2/admin/location/states"
 
 HEADERS = ({'User-Agent':
-                'Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:24.0) Gecko/20100101 Firefox/24.0',
+                'Apache/2.4.34 (Ubuntu) OpenSSL/1.1.1',
                 'Accept-Language': 'en-US'})
 # # HEADERS= headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36'}
 #
