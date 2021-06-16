@@ -87,14 +87,4 @@ def append_list(dic_val):
 
 def availability(data):
     lst=append_list(data)
-    for i in lst:
-        print("Name                     :", i["name"])
-        print("Address                  :", i["address"])
-        print("Block_name               :", i["block_name"])
-        print("PinCode                  :", i["pincode"])
-        print("available_capacity_dose1 :", i["available_capacity_dose1"])
-        print("available_capacity_dose2 :", i['available_capacity_dose2'])
-        print("available_capacity       :", i["available_capacity"])
-        print(" " * 100)
-
 availability(val)
